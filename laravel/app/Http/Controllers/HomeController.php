@@ -20,6 +20,19 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
+    public function sendMail(Request $request){
+
+        $data = $request -> validate([
+            'mailText' => 'required|min:10'
+        ]);
+
+        Mail::to(Auth::user() -> email)
+            ->send(new TestMail($data['mailText']));
+
+        return redirect() ->back();
+
+    }
+
     /**
      * Show the application dashboard.
      *
@@ -27,10 +40,12 @@ class HomeController extends Controller
      */
     public function index()
     {   
-        $mail = Auth::user() -> email;
+        // $mail = Auth::user() -> email;
 
-        Mail::to ($mail) ->send(new TestMail('ciaooooooo'));
+        // Mail::to ($mail) ->send(new TestMail('ciaooooooo'));
 
         return view('home');
     }
+
+    
 }

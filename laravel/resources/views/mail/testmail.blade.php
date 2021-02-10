@@ -12,7 +12,7 @@
         <h1>Hello World to {{Auth::user() -> name}}</h1>
 
         <h2 style="color: green">{{$Msg}}</h2>
-    </div>
+    </div>  
 
 </body>
 </html>
